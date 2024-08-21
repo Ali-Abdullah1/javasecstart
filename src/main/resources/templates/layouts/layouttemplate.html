@@ -53,14 +53,10 @@
                     </a>
                 </div>
                 <div sec:authorize="isAnonymous()" class="user-info">
-                    <h2>Kontos</h2>
-                    <a href="/scheduleadmin">
-                        <button class="btn-login" onclick="window.location.href='/scheduleadmin'">        //Skapa konto
+                    <a href="/CreateAccount" th:attrappend="id=${activeFunction=='CreateAccount'? 'active' : null}" >
                         Skapa Konto
-                        </button>
                     </a>
                 </div>
-
             </div>
         </div>
         <ul class="nav-item">
