@@ -16,8 +16,8 @@ public class UserDataSeeder {
         if (userRepository.getByUsername("farzad.jalili@hotmail.se") == null) {
             addUser("farzad.jalili@hotmail.se", "farzad", "1");
         }
-        if (userRepository.getByUsername("ahnaf.khan@hotmail.se") == null) {
-            addUser("ahnaf.khan@hotmail.se", "Aahnaf", "2");
+        if (userRepository.getByUsername("ahnaf.khan@gmail.se") == null) {
+            addUser("ahnaf.khan@gmail.se", "Ahnaf", "2");
         }
         if (userRepository.getByUsername("alina.mazic@hotmail.se") == null) {
             addUser("alina.mazic@hotmail.se", "alina", "3");

@@ -40,14 +40,18 @@ public class WebSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/login", "/resetPasswordLink/**", "/handleResetPassword/**", "/resetPassword/**", "/updatedPassword/**", "/register").permitAll()
+                        // Tillåt åtkomst till statiska resurser
+                        .requestMatchers("/", "/login", "/resetPasswordLink/**", "/handleResetPassword/**", "/resetPassword/**", "/updatedPassword/**", "/register", "/css/**", "/js/**", "/images/**").permitAll()
+
+                        // Kräver inloggning för att komma åt /admin/** (t.ex. /admin/dogs)
+                        .requestMatchers("/admin/**").authenticated()
+
+                        // Alla andra förfrågningar måste vara autentiserade
                         .anyRequest().authenticated()
                 )
-
-
                 .formLogin((form) -> form
-                        .loginPage("/login").
-                        successForwardUrl("/")
+                        .loginPage("/login")
+                        .defaultSuccessUrl("/", true)
                         .permitAll()
                 )
                 .logout((logout) -> {
@@ -58,6 +62,9 @@ public class WebSecurityConfig {
 
         return http.build();
     }
+
+
+
 
 
 }
