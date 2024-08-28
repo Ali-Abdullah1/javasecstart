@@ -86,17 +86,17 @@
         </thead>
         <tbody id="tablerows">
         <tr th:each="dog: ${dogs}">
-            <th th:text="${dog.getName()}"></th>
-            <td th:text="${dog.getBreed()}"></td>
-            <td th:text="${dog.getAge()}"></td>
-            <td th:text="${dog.getSize()}"></td>
-            <td th:text="${dog.getPrice()}"></td>
+            <th th:text="${dog.name}"></th>
+            <td th:text="${dog.breed}"></td>
+            <td th:text="${dog.age}"></td>
+            <td th:text="${dog.size}"></td>
+            <td th:text="${dog.price}"></td>
             <td>
-                <a class="listbutton">Edit</a>
+                <a class="listbutton" th:href="@{/admin/dogs/edit/{id}(id=${dog.id})}">Edit</a>
             </td>
         </tr>
-
         </tbody>
+
     </table>
 
 </div>

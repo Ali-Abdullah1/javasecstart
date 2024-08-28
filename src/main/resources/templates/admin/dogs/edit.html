@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="sv" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layouts/layouttemplate" data-theme="light">
+<head>
+    <th:block layout:fragment="extraHead">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@event-calendar/build@1.5.0/event-calendar.min.css">
+    </th:block>
+</head>
+<body>
+<div layout:fragment="mainContent">
+    <h2>Edit Dog</h2>
+    <form th:action="@{/admin/dogs/update/{id}(id=${dog.id})}" method="post">
+        <table>
+            <tr>
+                <td><label for="name">Name:</label></td>
+                <td><input type="text" id="name" name="name" th:value="${dog.name}" required></td>
+            </tr>
+            <tr>
+                <td><label for="breed">Breed:</label></td>
+                <td><input type="text" id="breed" name="breed" th:value="${dog.breed}" required></td>
+            </tr>
+            <tr>
+                <td><label for="age">Age:</label></td>
+                <td><input type="text" id="age" name="age" th:value="${dog.age}" required></td>
+            </tr>
+            <tr>
+                <td><label for="size">Size:</label></td>
+                <td><input type="text" id="size" name="size" th:value="${dog.size}" required></td>
+            </tr>
+            <tr>
+                <td><label for="price">Price:</label></td>
+                <td><input type="number" id="price" name="price" th:value="${dog.price}" required></td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: center;">
+                    <button class="listbutton" type="submit">Save</button>
+                    <a class="listbutton" th:href="@{/admin/dogs}">Cancel</a>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>
