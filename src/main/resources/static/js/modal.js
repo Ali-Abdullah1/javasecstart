@@ -93,3 +93,33 @@ const getScrollbarWidth = () => {
 const isScrollbarVisible = () => {
     return document.body.scrollHeight > screen.height;
 }
+
+var inputName = document.getElementById("username");
+
+inputName.addEventListener("keyup", function() {
+    if (this.value.length > 10) {
+        this.value = this.value.substring(0, 10);
+        alert("Max 50 tecken")
+    }
+});
+
+function checkNameLength() {
+    let inputText = document.getElementById('username').value;
+    if (inputText.length >= 2) {
+
+        console.log("rätt namn");
+    } else {
+        alert("namnet måste innehålla minst 2 tecken");
+        document.getElementById('name').value = "";
+    }
+}
+function validatePassword() {
+    let inputPassword = document.getElementById('password').value;
+    let passwordRegex = /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{1,8}$/;
+    if (passwordRegex.test(inputPassword)) {
+        console.log("rätt");
+    } else {
+        alert("Måste vara i korrekt format (A1zxcvbn)");
+        document.getElementById('password').value = "";
+    }
+}

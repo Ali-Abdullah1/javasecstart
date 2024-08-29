@@ -12,10 +12,15 @@ public class AccountService {
     AccountRepository accountRepository;
 
 
+    public void register(String username, String password, String email) throws IllegalArgumentException{
 
+        if (accountRepository.findByUsername(username) != null){
+            throw new IllegalArgumentException("namn används");
+        }
 
-    public void register(String username, String password, String email){
-
+        if(accountRepository.findByEmail(email) !=null){
+            throw new IllegalArgumentException("mejl används");
+        }
         Account account = new Account();
         account.setUsername(username);
         account.setPassword(password);
