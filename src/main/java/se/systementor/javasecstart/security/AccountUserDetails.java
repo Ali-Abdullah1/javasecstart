@@ -1,39 +1,35 @@
 package se.systementor.javasecstart.security;
 
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import se.systementor.javasecstart.model.Account;
 
-import java.util.ArrayList;
 import java.util.Collection;
 
-public class ConcreteUserDetails implements UserDetails {
-    private User user;
+public class AccountUserDetails implements UserDetails {
 
-    public ConcreteUserDetails(User user) {
-        this.user = user;
+    private final Account account;
+
+    public AccountUserDetails(Account account) {
+        this.account = account;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        ArrayList<GrantedAuthority> authorities = new ArrayList<>();
 
-        return authorities;
+        return null;
     }
 
     @Override
     public String getPassword() {
-        return user.getPassword();
+        return account.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return user.getUsername();
+        return account.getUsername();
     }
 
-    public String getFirstName() {
-        return user.getFirstName();
-    }
     @Override
     public boolean isAccountNonExpired() {
         return true;
@@ -54,3 +50,4 @@ public class ConcreteUserDetails implements UserDetails {
         return true;
     }
 }
+

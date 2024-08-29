@@ -1,6 +1,5 @@
 package se.systementor.javasecstart.security;
 
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -19,7 +18,7 @@ public class WebSecurityConfig {
 
     @Bean
     public UserDetailsService userDetailsService() {
-        return new UserDetailsServiceImpl();
+        return new AccountDetailsService();
     }
 
     @Bean
@@ -40,31 +39,18 @@ public class WebSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((requests) -> requests
-                        // Tillåt åtkomst till statiska resurser
-                        .requestMatchers("/", "/login", "/resetPasswordLink/**", "/handleResetPassword/**", "/resetPassword/**", "/updatedPassword/**", "/CreateAccount", "/css/**", "/js/**", "/images/**").permitAll()
-
-                        // Kräver inloggning för att komma åt /admin/** (t.ex. /admin/dogs)
                         .requestMatchers("/admin/**").authenticated()
-
-                        // Alla andra förfrågningar måste vara autentiserade
-                        .anyRequest().authenticated()
+                        .anyRequest().permitAll()
                 )
                 .formLogin((form) -> form
                         .loginPage("/login")
                         .defaultSuccessUrl("/", true)
                         .permitAll()
                 )
-                .logout((logout) -> {
-                    logout.permitAll();
-                    logout.logoutSuccessUrl("/login");
-                })
+                .logout((logout) -> logout.permitAll())
                 .csrf(AbstractHttpConfigurer::disable);
 
         return http.build();
     }
-
-
-
-
-
 }
+
