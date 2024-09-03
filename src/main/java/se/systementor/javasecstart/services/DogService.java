@@ -1,6 +1,7 @@
     package se.systementor.javasecstart.services;
 
     import org.springframework.beans.factory.annotation.Autowired;
+    import org.springframework.data.domain.Sort;
     import org.springframework.stereotype.Service;
     import se.systementor.javasecstart.model.Dog;
     import se.systementor.javasecstart.model.DogRepository;
@@ -9,7 +10,7 @@
     import java.util.Optional;
 
     @Service
-    public class DogService {
+    public abstract class DogService {
         @Autowired
         DogRepository dogRepository;
 
@@ -25,4 +26,8 @@
             dogRepository.save(dog);
         }
 
+
+        public abstract List<Dog> findAllDogs(Sort sort);
+
+        public abstract List<Dog> findAllByDogNameContains(String name, Sort sort);
     }
